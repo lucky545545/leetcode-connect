@@ -1,8 +1,4 @@
-class Solution(object):
-    def getConcatenation(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        return nums+nums
+class Solution:
+    def getConcatenation(self, nums: List[int]) -> List[int]:
+        return 2*nums
         
