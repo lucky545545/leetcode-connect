@@ -1,33 +1,42 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        vector<int> arr;
-        vector<int> arr1;
-        int i = 0; int j = 0;
-        int count = 0;
-        for(i = 0 ; i<nums.size() ; i++){
-            if(nums[i] == target){
-                arr.push_back(i);
-                count++;
-            }
-        }
-        if(count == 1){
-            arr.push_back(arr[0]);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-        }
-        if(arr.size()>0){
-                arr1.push_back(arr[0]);
-                arr1.push_back(arr[arr.size()-1]);
-                return arr1;
-
-
+        int start = -1;
+        int end = -1;
+        int low = 0;
+        int high = nums.size() -1;
+        int mid;
+        while(low <= high){
+            int mid = low + (high-low)/2;
+            if(nums[mid] == target){
+                start = mid;
+                high = mid -1;
 
             }
-        else{
-            arr.push_back(-1);
-            arr.push_back(-1);
-            return arr;
+            else if(target > nums[mid]){
+                low = mid + 1 ; 
+            }
+            else{
+                high = mid - 1;
+            }
         }
-        
-        
+        low = 0;
+        high = nums.size() - 1;
+        while(low <= high){
+            mid = low + (high-low)/2;
+            if(nums[mid] == target){
+                end = mid;
+                low = mid + 1;
+
+            }
+            else if(target > nums[mid]){
+                low = mid + 1 ; 
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return {start , end};
+
     }
 };
