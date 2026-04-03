@@ -1,14 +1,14 @@
 class Solution {
 public:
-    vector<int> sortColors(vector<int>& nums) {
+    void sortColors(vector<int>& nums) {
         int count_0 = 0;
         int count_1 = 0;
         int count_2 = 0;
-        for(int i=0 ; i<nums.size() ; i++){
-            if(nums[i] == 0){
+        for(auto i : nums){
+            if(i == 0){
                 count_0++;
             }
-            else if(nums[i] == 1){
+            else if(i == 1){
                 count_1++;
             }
             else{
@@ -16,9 +16,21 @@ public:
             }
         }
         int index = 0;
-        while(count_0--) nums[index++] = 0;
-        while(count_1--) nums[index++] = 1;
-        while(count_2--) nums[index++] = 2;
-        return nums;    
+        while(count_0 > 0){
+            nums[index] = 0;
+            count_0--;
+            index++;
+        }
+        while(count_1 > 0){
+            nums[index] = 1;
+            count_1--;
+            index++;
+        }
+        while(count_2 > 0){
+            nums[index] = 2;
+            count_2--;
+            index++;
+        }
+        
     }
 };
