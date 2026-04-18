@@ -1,14 +1,20 @@
 class Solution {
 public:
-    int climbStairs(int n) {
-        int memo[100];
-        memo[0]=1;
-        memo[1]=1;
-        memo[2]=2;
-        for(int i=3 ; i<=n ; ++i ){
-            memo[i] = memo[i-1] + memo[i-2];
+    int memo(int n , vector<int>& dp){
+        if(n == 2){
+            return 2;
         }
-        return memo[n];
-        
+        if(n == 1){
+            return 1;
+        }
+        if(dp[n] != -1){
+            return dp[n];
+        }
+        return dp[n] = memo(n-1 , dp) + memo(n-2 , dp);
+    }
+
+    int climbStairs(int n) {
+        vector<int> dp(n+1 , -1);
+        return memo(n , dp);
     }
 };
