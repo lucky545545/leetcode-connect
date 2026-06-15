@@ -2,39 +2,23 @@ class Solution {
 public:
     bool isValid(string s) {
         stack<char> st;
-        for(int i = 0 ; i<s.size() ; i++){
-            if(s[i] == ']'){
-                if(!st.empty() && st.top() == '['){
-                    st.pop();
-                }
-                else{
-                    return false;
-                }
-            }
-            else if(s[i] == '}'){
-                if(!st.empty() && st.top() == '{'){
-                    st.pop();
-                }
-                else{
-                    return false;
-                }
-            }
-            else if(s[i] == ')' ){
-                if(!st.empty() && st.top() == '('){
-                    st.pop();
-                }
-                else{
-                    return false;
-                }
-
+        for(auto i : s){
+            if(i == '(' || i == '[' || i == '{' ){
+                st.push(i);
             }
             else{
-                st.push(s[i]);
+                if(!st.empty() && (i == ')' && st.top() == '(') || !st.empty() && (i == ']' && st.top() == '[') || !st.empty() && (i == '}' && st.top() == '{') ){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
             }
         }
-        if(st.empty() == true){
+        if(st.empty()){
             return true;
         }
         return false;
+        
     }
 };
