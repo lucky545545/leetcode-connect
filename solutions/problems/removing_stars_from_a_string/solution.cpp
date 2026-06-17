@@ -1,16 +1,24 @@
-#include <stack>
 class Solution {
 public:
-    string removeStars(string s){
-        string out = ""; 
-        for(auto i : s){
-            if(i == '*'){
-                out.pop_back();
+    string removeStars(string s) {
+        stack<char> st;
+        for(auto x : s){
+            if(x != '*'){
+                st.push(x);
             }
             else{
-                out.push_back(i);
+                if(!st.empty()){
+                    st.pop();
+                }
             }
         }
-        return out;
+        string out = "";
+        while(!st.empty()){
+            out.push_back(st.top());
+            st.pop();
         }
-    };
+        reverse(out.begin() , out.end());
+        return out;
+        
+    }
+};
