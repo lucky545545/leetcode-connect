@@ -6,12 +6,10 @@ public:
         int out = 0;
         for(int i = 0 ; i < s.size() ; i++){
             mp[s[i]]++;
-            if(mp[s[i]] > 1){
-                while(mp[s[i]] > 1){
+            while(mp[s[i]] > 1){
                     mp[s[j]]--;
                     j++;
                 }
-            }
             out = max(out , i-j+1);
         }
         
