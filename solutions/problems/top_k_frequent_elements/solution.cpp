@@ -10,11 +10,11 @@ public:
             pq.push({value , key});
         }
         vector<int> out;
-        while(k > 0){
+        while(k != 0){
             out.push_back(pq.top().second);
             pq.pop();
             k--;
         }
-    return out;
+        return out;
     }
 };
