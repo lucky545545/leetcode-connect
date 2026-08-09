@@ -18,13 +18,13 @@ public:
         sum += root->val;
         currpath.push_back(root->val);
         
-        if(sum == targetsum && root->left == nullptr && root->right == nullptr){
-            out.push_back(currpath);
-        }
         
         dfs(root->left , targetsum , sum , out , currpath);
         dfs(root->right , targetsum , sum , out , currpath);
 
+        if(sum == targetsum && root->left == nullptr && root->right == nullptr){
+            out.push_back(currpath);
+        }
         
         currpath.pop_back();
         sum -= root->val;
